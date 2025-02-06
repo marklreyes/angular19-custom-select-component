@@ -1,0 +1,60 @@
+<div class="container" role="main">
+	<div class="content max-width-600">
+		@defer (when optionsData) {
+				<div class="content" role="region" aria-labelledby="options-menu-heading">
+					<h2 id="options-menu-heading" class="sr-only">Options Menu Component</h2>
+					<app-options-menu
+						[optionsList]="optionsData"
+						(optionSaved)="onSelection($event, 'app-options-menu')"
+						aria-label="Select an option from the menu"
+					/>
+					@defer (when appOptionsMenuResult) {
+						<div class="result-card" role="region" aria-live="polite">
+							<h3>Selected option from Options Menu Component</h3>
+							<p>Label: {{ appOptionsMenuResult?.label }}</p>
+							<p>Value: {{ appOptionsMenuResult?.value }}</p>
+						</div>
+					} @loading {
+						<p role="status" aria-live="polite">Loading result...</p>
+					} @error {
+						<p role="alert">Error loading result</p>
+					} @placeholder {
+						<p role="status">Select an option from the menu above to see its result.</p>
+					}
+				</div>
+
+				<hr aria-hidden="true">
+
+				<div class="content" role="region" aria-labelledby="custom-select-heading">
+					<h2 id="custom-select-heading" class="sr-only">Custom Select Component</h2>
+					<app-custom-select
+						[options]="optionsData"
+						(optionSaved)="onSelection($event, 'app-custom-select')"
+						aria-label="Select an option from the custom dropdown"
+					></app-custom-select>
+					@defer (when appCustomSelectResult) {
+						<div class="result-card" role="region" aria-live="polite">
+							<h3>Selected option from Custom Select Component</h3>
+							<p>Label: {{ appCustomSelectResult?.label }}</p>
+							<p>Value: {{ appCustomSelectResult?.value }}</p>
+						</div>
+					} @loading {
+						<p role="status" aria-live="polite">Loading result...</p>
+					} @error {
+						<p role="alert">Error loading result</p>
+					} @placeholder {
+						<p role="status">Select an option from the menu above to see its result.</p>
+					}
+				</div>
+		} @loading {
+			<p role="status" aria-live="polite">Loading demo...</p>
+		} @error {
+			<p role="alert">Error loading demo</p>
+		} @placeholder {
+			<p role="status">No demo available</p>
+		}
+	</div>
+</div>
+<footer>
+	<p>Made with ❤️ by <a href="//marklreyes.com" target="_blank">Mark L. Reyes</a></p>
+</footer>
