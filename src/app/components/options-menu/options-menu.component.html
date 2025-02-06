@@ -1,0 +1,40 @@
+<form
+  name="optionsName"
+  [formGroup]="optionsForm"
+  (ngSubmit)="onSubmit()"
+  role="form"
+  aria-labelledby="form-title"
+  aria-describedby="form-description"
+>
+	<h2 id="form-title" class="sr-only">Options Selection Form</h2>
+	<p id="form-description" class="sr-only">Please select an option from the dropdown menu below</p>
+
+	<div class="form-group">
+		<label class="sr-only" for="selectOption" id="select-label">Select Option</label>
+		<select
+		class="form-control"
+		id="selectOption"
+		formControlName="selectOption"
+		(change)="onChange()"
+		aria-labelledby="select-label"
+		aria-required="true"
+		aria-invalid="optionsForm.get('selectOption')?.invalid && optionsForm.get('selectOption')?.touched"
+		[attr.aria-describedby]="optionsForm.get('selectOption')?.errors ? 'select-error' : null"
+	  >
+		<option class="option-placeholder" value="" disabled>Select an option</option>
+		@for(option of optionsList; track option) {
+			<option [value]="option.value">{{ option.label }}</option>
+		}
+	  </select>
+
+	  @if (optionsForm.get('selectOption')?.errors && optionsForm.get('selectOption')?.touched) {
+		<div id="select-error" class="error-message" role="alert" aria-live="polite">
+		  Please select an option
+		</div>
+	  }
+	</div>
+	<div class="sr-only" aria-live="polite" role="status">
+		{{ optionsForm.valid ? 'Form is valid' : 'Form has errors' }}
+	</div>
+	<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+  </form>
