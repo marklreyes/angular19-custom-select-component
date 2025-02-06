@@ -1,0 +1,15 @@
+/* Add application styles & imports to this file! */
+
+$color-background: #F9FAFB;
+
+:root {
+  --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+html {
+  background-color: $color-background;
+}
+
+body {
+  font-family: var(--system-ui);
+}
