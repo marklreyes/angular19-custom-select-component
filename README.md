@@ -12,6 +12,20 @@ A demonstration of two select menu components built with Angular 19, showcasing 
 - Responsive design
 - Animations for dropdown interactions
 
+## Behind The Screen
+- `AppComponent`
+	- Deferrable views with `@defer`, `@loading`, `@error` and `@placeholder` blocks.
+	- `OptionsService` to **fake** a backend call with the newer DI method with `inject()`. No need for instantiation inside of a class constructor, wow!
+- `OptionsMenuComponent`
+	- Reactive Form including Material-like Design *without* the actual use of Angular Material UI.
+	- `@Input`, `@Output` decorators to establish parent-to-child relationship and project selected data back to `AppComponent`.
+	- FYI - select > option HTML elements are limited on custim styling, thus the creation of `CustomSelectComponent`.
+- `CustomSelectComponent`
+	- Custom Select Form including Material-like Design *without* the actual use of Angular Material UI.
+	- `@Input`, `@Output` decorators to establish parent-to-child relationship and project selected data back to `AppComponent`.
+	- `ControlValueAccessor` interface to allow custom component to be used as a Form Control.
+	- `NG_VALUE_ACCESSOR` token to provide aforementioned interface for form controls.
+
 ## Prerequisites
 - Node.js (v18.x or higher)
 - npm (v9.x or higher)
