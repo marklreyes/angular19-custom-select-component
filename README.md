@@ -19,7 +19,7 @@ A demonstration of two select menu components built with Angular 19, showcasing 
 - `OptionsMenuComponent`
 	- Reactive Form including Material-like Design *without* the actual use of Angular Material UI.
 	- `@Input`, `@Output` decorators to establish parent-to-child relationship and project selected data back to `AppComponent`.
-	- FYI - select > option HTML elements are limited on custim styling, thus the creation of `CustomSelectComponent`.
+	- FYI - select > option HTML elements are limited on custom styling, thus the creation of `CustomSelectComponent`.
 - `CustomSelectComponent`
 	- Custom Select Form including Material-like Design *without* the actual use of Angular Material UI.
 	- `@Input`, `@Output` decorators to establish parent-to-child relationship and project selected data back to `AppComponent`.
