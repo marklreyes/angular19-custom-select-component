@@ -1,0 +1,150 @@
+@use 'sass:color';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+$color-custom: #3f51b5;
+$color-custom-option: #2D3343;
+$color-custom-selected: #FAE8EB;
+$color-white: #fff;
+$form-control-padding: 0.5rem;
+$form-control-border-radius: 4px;
+$form-control-border: 1px solid #ccc;
+$form-control-focus-border: 2px solid $color-custom;
+$form-control-focus-box-shadow: 0 0 5px rgba(63, 81, 181, 0.5);
+$color-custom-placeholder: #D5D9E2;
+
+form {
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Base select styling for Chrome 135+ */
+#selectOption135,
+::picker(select) {
+    border: $form-control-border;
+    border-radius: $form-control-border-radius;
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    /* New Chrome 135 feature */
+    appearance: base-select;
+
+    /* Fallback for browsers that don't support base-select */
+    @supports not (appearance: base-select) {
+        appearance: none;
+        background-color: $color-white;
+        background-image: linear-gradient(45deg, transparent 50%, $color-custom 50%),
+                          linear-gradient(135deg, $color-custom 50%, transparent 50%);
+        background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+    }
+
+    &:focus {
+        border-color: $form-control-focus-border;
+        outline: none;
+    }
+}
+
+option {
+	padding: 0.5rem 1rem;
+	line-height: 1.5rem;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	width: auto;
+	padding: $form-control-padding;
+
+	&:hover,
+	&.selected {
+		background-color: $color-custom-selected;
+	}
+}
+
+
+option::checkmark {
+	display: none;
+}
+
+/* Chrome 135+ ::picker styling for the button */
+#selectOption135,
+::picker(button) {
+    border-radius: $form-control-border-radius;
+    background-color: $color-white;
+    padding: $form-control-padding;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+	width: 100%;
+}
+
+/* Button hover state */
+#selectOption135,
+::picker(button):hover {
+    background-color: rgba($color-custom, 0.04);
+}
+
+/* Button focus state */
+#selectOption135,
+::picker(button):focus {
+    border-color: $form-control-focus-border;
+    outline: none;
+}
+
+/* Dropdown listbox styling */
+#selectOption135,
+::picker(select) {
+    background-color: $color-white;
+    border-radius: $form-control-border-radius;
+	border: 1px solid #ccc;
+    overflow-y: auto;
+	margin-top: 5px;
+	max-height: calc(2.5rem * 5); // 2.5rem = option height (0.5rem padding top/bottom + 1.5rem line height)
+	color: $color-custom-option;
+
+}
+
+/* Placeholder styling */
+select option:first-child {
+    color: $color-custom-placeholder;
+}
+
+.option-placeholder[data-placeholder] {
+	display: none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Error state styling */
+.ng-invalid.ng-touched.form-control {
+    border-color: #f44336;
+}
+
+.ng-invalid.ng-touched#selectOption135,
+::picker(button) {
+    border-color: #f44336;
+}
+
+.error-message {
+    color: #f44336;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}

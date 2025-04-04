@@ -1,8 +1,64 @@
 <div class="container" role="main">
 	<div class="content max-width-600">
 		@defer (when optionsData) {
+
+			<div class="content" role="region" aria-labelledby="custom-select-heading">
+				<h2 id="custom-select-heading" class="sr-only">Chrome 135+ Select Component</h2>
+				<p>The Renaissance.</p>
+				<div class="disclaimer">
+					<p><strong>Note:</strong> This component showcases the enhancements available in <a href="https://developer.chrome.com/blog/a-customizable-select" target="_blank">Chrome 135+ for native select elements</a>. Features may not be available in all browsers and functionality could vary based on your current browser version.</p>
+				</div>
+				<app-select-chrome135
+					[optionsList]="optionsData"
+					(optionSaved)="onSelection($event, 'app-select-chrome135')"
+					aria-label="Select an option from the custom dropdown"
+				></app-select-chrome135>
+				@defer (when appSelectChrome135Result) {
+					<div class="result-card" role="region" aria-live="polite">
+						<h3>Selected option from Custom Select Component</h3>
+						<p>Label: {{ appSelectChrome135Result?.label }}</p>
+						<p>Value: {{ appSelectChrome135Result?.value }}</p>
+					</div>
+				} @loading {
+					<p role="status" aria-live="polite">Loading result...</p>
+				} @error {
+					<p role="alert">Error loading result</p>
+				} @placeholder {
+					<p role="status">Select an option from the menu above to see its result.</p>
+				}
+			</div>
+
+
+				<hr aria-hidden="true">
+
+				<div class="content" role="region" aria-labelledby="custom-select-heading">
+					<h2 id="custom-select-heading" class="sr-only">Custom Select Component</h2>
+					<p>The Workaround.</p>
+					<app-custom-select
+						[options]="optionsData"
+						(optionSaved)="onSelection($event, 'app-custom-select')"
+						aria-label="Select an option from the custom dropdown"
+					></app-custom-select>
+					@defer (when appCustomSelectResult) {
+						<div class="result-card" role="region" aria-live="polite">
+							<h3>Selected option from Custom Select Component</h3>
+							<p>Label: {{ appCustomSelectResult?.label }}</p>
+							<p>Value: {{ appCustomSelectResult?.value }}</p>
+						</div>
+					} @loading {
+						<p role="status" aria-live="polite">Loading result...</p>
+					} @error {
+						<p role="alert">Error loading result</p>
+					} @placeholder {
+						<p role="status">Select an option from the menu above to see its result.</p>
+					}
+				</div>
+
+				<hr aria-hidden="true">
+
 				<div class="content" role="region" aria-labelledby="options-menu-heading">
 					<h2 id="options-menu-heading" class="sr-only">Options Menu Component</h2>
+					<p>The OG.</p>
 					<app-options-menu
 						[optionsList]="optionsData"
 						(optionSaved)="onSelection($event, 'app-options-menu')"
@@ -23,29 +79,6 @@
 					}
 				</div>
 
-				<hr aria-hidden="true">
-
-				<div class="content" role="region" aria-labelledby="custom-select-heading">
-					<h2 id="custom-select-heading" class="sr-only">Custom Select Component</h2>
-					<app-custom-select
-						[options]="optionsData"
-						(optionSaved)="onSelection($event, 'app-custom-select')"
-						aria-label="Select an option from the custom dropdown"
-					></app-custom-select>
-					@defer (when appCustomSelectResult) {
-						<div class="result-card" role="region" aria-live="polite">
-							<h3>Selected option from Custom Select Component</h3>
-							<p>Label: {{ appCustomSelectResult?.label }}</p>
-							<p>Value: {{ appCustomSelectResult?.value }}</p>
-						</div>
-					} @loading {
-						<p role="status" aria-live="polite">Loading result...</p>
-					} @error {
-						<p role="alert">Error loading result</p>
-					} @placeholder {
-						<p role="status">Select an option from the menu above to see its result.</p>
-					}
-				</div>
 		} @loading {
 			<p role="status" aria-live="polite">Loading demo...</p>
 		} @error {
