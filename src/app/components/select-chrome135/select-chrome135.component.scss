@@ -31,10 +31,6 @@ label {
 /* Base select styling for Chrome 135+ */
 #selectOption135,
 ::picker(select) {
-    border: $form-control-border;
-    border-radius: $form-control-border-radius;
-    transition: border-color 0.3s, box-shadow 0.3s;
-
     /* New Chrome 135 feature */
     appearance: base-select;
 
@@ -55,6 +51,30 @@ label {
     }
 }
 
+select  {
+    color: $color-custom-placeholder;
+	appearance: none;
+}
+
+// Custom picker icon styling
+select::picker-icon {
+	display: block;
+	background-image: url('/assets/images/arrow_down.jpg');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 12px;
+	height: 12px;
+	margin-left: 8px;
+	z-index: 10;
+	color: transparent
+}
+
+// Change to up arrow when dropdown is open
+select:open::picker-icon {
+	background-image: url('/assets/images/arrow_up.jpg');
+}
+
 option {
 	padding: 0.5rem 1rem;
 	line-height: 1.5rem;
@@ -62,7 +82,6 @@ option {
 	transition: background-color 0.3s;
 	width: auto;
 	padding: $form-control-padding;
-
 	&:hover,
 	&.selected {
 		background-color: $color-custom-selected;
@@ -103,21 +122,20 @@ option::checkmark {
 /* Dropdown listbox styling */
 #selectOption135,
 ::picker(select) {
-    background-color: $color-white;
-    border-radius: $form-control-border-radius;
-	border: 1px solid #ccc;
-    overflow-y: auto;
 	margin-top: 5px;
 	max-height: calc(2.5rem * 5); // 2.5rem = option height (0.5rem padding top/bottom + 1.5rem line height)
-	color: $color-custom-option;
-
+	overflow-y: auto;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	z-index: 1;
+	scrollbar-width: thin;
+	scrollbar-color: $color-custom #f1f1f1;
+	animation: fadeIn var(--animation-timing) var(--animation-easing);
+	will-change: transform, opacity;
 }
 
 /* Placeholder styling */
-select option:first-child {
-    color: $color-custom-placeholder;
-}
-
 .option-placeholder[data-placeholder] {
 	display: none;
 }
