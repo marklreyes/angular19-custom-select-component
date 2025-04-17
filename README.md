@@ -1,6 +1,6 @@
 # Angular 19 Custom Select Components Demo
 
-A demonstration of two select menu components built with Angular 19, showcasing both a standard dropdown and a custom select implementation with accessibility features.
+A demonstration of two select menu components built with Angular 19, showcasing both a standard dropdown and a custom select implementation with accessibility features. [Read more](https://marklreyes.com/blog/angular-material-ish/).
 
 ![Reactive Form and Custom Component to illustrate a select menu with options](https://github.com/marklreyes/angular19-custom-select-component/blob/main/Angular19_ReactiveFormOptions_CustomSelectOptions.gif?raw=true)
 
